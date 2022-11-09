@@ -24,7 +24,7 @@ developed on Python 3.9.12
 4. docker stop simplify-scraper
 
 # future changes
-adding each app card to the csv as they are read in. this will improve memory. it isn't a big concern because I don't expect 1000s of applications. adding these cards to a database will be good too as they are added
+- adding each app card to the csv as they are read in. this will improve memory. it isn't a big concern because I don't expect 1000s of applications. adding these cards to a database will be good too as they are added
+- build this into a web app
 
-
-*Connor Lydon*
+* Developed by Connor Lydon*
