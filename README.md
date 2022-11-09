@@ -1,6 +1,6 @@
 # simplify-scraper
 
-looking for jobs right now. I use the simplify chrome extension to fill in and help keep track of applications. It stores the data fine, but I want to analyze my applications. It isn't possible to download data from the app's webpage. this app will be able to parse each posting and then load it into a csv.
+looking for jobs right now. I use the [simplify](https://simplify.jobs) chrome extension to fill in and help keep track of applications. It stores the data fine, but I want to analyze my applications. It isn't possible to download data from the app's webpage. this app will be able to parse each posting and then load it into a csv.
 
 # instructions
 developed on Python 3.9.12
