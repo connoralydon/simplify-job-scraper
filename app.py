@@ -43,7 +43,7 @@ def handle_app_data(file_name: str):
         :rtype: dict
         """
         # splitting the colleced text by "\n"
-        raw_text_list = app_card.get_text("\n").split('\n') # lots of empty space
+        raw_text_list = app_card.get_text("\n").replace(",","\t").split('\n') # lots of empty space
         
         stripped_text = []
         for d in raw_text_list: # fixed length
