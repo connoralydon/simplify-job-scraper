@@ -9,6 +9,8 @@ developed on Python 3.9.12
 2. put all those htmls in the tasks directory
 3. run `python app.py` and it will output those applications to the output.csv
 
+![img](img/getting_html.png)
+
 ### if docker installed
 
 1. docker pull python 3.9.12
