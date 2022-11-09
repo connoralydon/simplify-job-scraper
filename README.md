@@ -14,3 +14,6 @@ to even get the proper HTML i needed to insepct the page and manually copy it fr
 possibly automating this with requests, but not sure about authentication
 
 data-testid="application-card"
+
+# future optimizations
+adding each app card to the csv as they are read in. this will improve memory. it isn't a big concern because I don't expect 1000s of applications. adding these cards to a database will be good too as they are added

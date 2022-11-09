@@ -1,14 +1,9 @@
 # app.py
 
+import os
+BASE_DIR = os.getcwd()
 from bs4 import BeautifulSoup
 
-# load in from html_tasks directory
-
-# function to iterate over all the file names
-file_name = "test_data.html"
-
-# iterate this taks through each html doc in the 
-    
 def handle_app_data(file_name: str):
     """handle the applications from a single html
 
@@ -47,16 +42,16 @@ def handle_app_data(file_name: str):
         :return: data that represents a single app card
         :rtype: dict
         """
-        # print(app_card)
-        raw_text_list = app_card.text.split('\n')
-        # print(raw_text_list)
+        # splitting the colleced text by "\n"
+        raw_text_list = app_card.get_text("\n").split('\n') # lots of empty space
+        
         stripped_text = []
         for d in raw_text_list: # fixed length
             # if non empty string after being stripped
             if d and d.strip(): 
                 stripped_text.append(d.strip().lower())
         
-        print(stripped_text)
+        # print(stripped_text)
         # take first three and fifth element :2, 3
         static_data = stripped_text[:3] + [stripped_text[4]]
         
@@ -64,12 +59,18 @@ def handle_app_data(file_name: str):
             
         # sub-problem: assign bool to each level
         def assign_status_levels():
-            status_levels = ["applied", "screen","interview","offer"]
+            status_levels = ["applied", "screen","interview","offer","rejected"]
+            # there may also me a rejected level if offer doesn't exist
             for i, status in enumerate(status_levels):
                 statuses_to_check = status_levels[:i] + status_levels[i+1:]
                 
                 # index of this status in the main data
-                target_index = stripped_text.index(status)
+                if status in stripped_text:
+                    target_index = stripped_text.index(status)
+                else:
+                    application_dict[status] = 0
+                    continue
+                    
                 try:
                     # date exists after status?
                     if stripped_text[target_index+1] not in statuses_to_check:
@@ -111,7 +112,8 @@ def handle_app_data(file_name: str):
         return table_csv_list
         
     def build_csv(data: list[list], 
-                write_mode: str = "a"):
+                write_mode: str = "a",
+                output_name: str = "output"):
         """build csv from the raw data
 
         :param data: table list of
@@ -120,7 +122,7 @@ def handle_app_data(file_name: str):
         :type write_mode: str, optional
         """
         
-        with open("output.csv", write_mode) as built_csv:
+        with open(output_name + ".csv", write_mode) as built_csv:
             for line in data:
                 line_str = ','.join(line) + '\n'
                 built_csv.write(line_str)
@@ -139,5 +141,12 @@ def handle_app_data(file_name: str):
     
     build_csv(tabled_data)
 
+# grab htmls from tasks directory
+# tasks need to be the rendered HTML, not the JS
+os.chdir("tasks")
+tasks = ["tasks/" + o for o in os.listdir()]
+os.chdir(BASE_DIR)
+
 # iterate through all files
-handle_app_data(file_name)
+for t in tasks:
+    handle_app_data(t)
