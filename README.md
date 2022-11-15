@@ -15,6 +15,7 @@ developed on Python 3.9.12
 
 1. docker pull python 3.9.12
 2. docker run -d -t --name simplify-scraper --mount type=bind,source="$(pwd)"/target,target=/app python:3.9.12
+   1. docker start simplify-scraper #if container already created
 3. docker exec -it simplify-scraper bash
     in bash:
     1. cd app
@@ -23,7 +24,7 @@ developed on Python 3.9.12
     4. exit # to exit docker conta
 4. docker stop simplify-scraper
 
-# future changes
+# future changes (branch for each)
 - adding each app card to the csv as they are read in. this will improve memory. it isn't a big concern because I don't expect 1000s of applications. adding these cards to a database will be good too as they are added
 - build this into a web app
 
