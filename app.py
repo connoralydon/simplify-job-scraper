@@ -122,14 +122,19 @@ def handle_app_data(file_name: str):
                 output_name: str = "output"):
         """build csv from the raw data
 
-        :param data: table list of
+        :param data: table list of lists
         :type data: list[list]
         :param write_mode: write mode for the opening of the file, defaults to "a"
         :type write_mode: str, optional
         """
+        file_existed = os.path.isfile(output_name + ".csv")
         
         with open(output_name + ".csv", write_mode) as built_csv:
-            for line in data:
+            headers = ','.join(data[0]) + '\n'
+            if not file_existed:
+                built_csv.write(headers)
+            
+            for line in data[1:]:
                 line_str = ','.join(line) + '\n'
                 built_csv.write(line_str)
 
