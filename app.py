@@ -1,6 +1,12 @@
 # app.py
 
+import sys
+print(sys.path)
+print(sys.version)
+print(sys.version_info)
+
 import os
+
 BASE_DIR = os.getcwd()
 from bs4 import BeautifulSoup
 
@@ -146,6 +152,8 @@ def handle_app_data(file_name: str):
 os.chdir("tasks")
 tasks = ["tasks/" + o for o in os.listdir()]
 os.chdir(BASE_DIR)
+
+os.system("rm output.csv")
 
 # iterate through all files
 for t in tasks:
